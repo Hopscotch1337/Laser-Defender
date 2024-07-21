@@ -21,7 +21,7 @@ public class AudioPlayer : MonoBehaviour
     [SerializeField] AudioClip [] audioClips;
     AudioSource audioSource;
 
-    void Awake() //test test klösjk f
+    void Awake() //test test 
     {
         if (audioClips != null)
         {
