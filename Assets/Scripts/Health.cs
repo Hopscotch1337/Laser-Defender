@@ -11,10 +11,11 @@ public class Health : MonoBehaviour
     [SerializeField] ParticleSystem hitEffect;
     [SerializeField] ParticleSystem destroyEffect;
     CameraShake cameraShake;
-    [SerializeField] bool applyCameraShake;
+    [SerializeField] bool isPlayer;
     AudioPlayer audioPlayer;
     ScoreKeeper scoreKeeper;
     LevelManager levelManager;
+    EnemyAttributes enemyAttributes;
 
     void Awake()
     {
@@ -22,6 +23,20 @@ public class Health : MonoBehaviour
         audioPlayer = FindObjectOfType<AudioPlayer>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
         levelManager = FindObjectOfType<LevelManager>();
+        enemyAttributes = FindAnyObjectByType<EnemyAttributes>();  
+    }
+    void Start()
+    {
+        UpdateAttributes();
+    }
+
+    void UpdateAttributes()
+    {
+        if (!isPlayer)
+        {
+            health = Mathf.RoundToInt(health * enemyAttributes.GetHealthMultiplier());
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
@@ -35,7 +50,7 @@ public class Health : MonoBehaviour
                 Takedamage(damageDealer.GetDamage());
             }
         }
-        else if (other.tag == "PowerUps" && applyCameraShake)
+        else if (other.tag == "PowerUps" && isPlayer)
         {
             PowerUps powerUps = other.GetComponent<PowerUps>();
             if (powerUps != null)
@@ -76,7 +91,7 @@ public class Health : MonoBehaviour
             ShakeCamra();
             if (health <1)
             {
-                if(!applyCameraShake && scoreKeeper != null)
+                if(!isPlayer && scoreKeeper != null)
                 {
                     scoreKeeper.AddScore(scoreToAdd);
                 }
@@ -117,7 +132,7 @@ public class Health : MonoBehaviour
 
     void ShakeCamra()
     {
-        if(applyCameraShake && cameraShake != null)
+        if(isPlayer && cameraShake != null)
         {
             cameraShake.Play();
         }

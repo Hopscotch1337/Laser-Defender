@@ -310,7 +310,7 @@ MonoBehaviour:
   scoreToAdd: 0
   hitEffect: {fileID: 4086602096136435927, guid: 2fc5509a81406f347a7b783fd7931a01, type: 3}
   destroyEffect: {fileID: 5605177456112190921, guid: 130a6614160f5974aa41e2bd2058e4c9, type: 3}
-  applyCameraShake: 1
+  isPlayer: 1
 --- !u!114 &4076436619796421024
 MonoBehaviour:
   m_ObjectHideFlags: 0
