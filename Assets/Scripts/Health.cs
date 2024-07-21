@@ -35,7 +35,7 @@ public class Health : MonoBehaviour
                 Takedamage(damageDealer.GetDamage());
             }
         }
-        else (other.tag == "PowerUps" && applyCameraShake)
+        else if (other.tag == "PowerUps" && applyCameraShake)
         {
             PowerUps powerUps = other.GetComponent<PowerUps>();
             if (powerUps != null)
