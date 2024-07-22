@@ -17,6 +17,8 @@ public class Shooter : MonoBehaviour
     [SerializeField] float fireRateModifikator = 0f;
     [SerializeField] float minFireRate = 0.2f;
     [SerializeField] bool useAI;
+    bool autoFire = true; // Android Verison
+
 
     [HideInInspector] public bool isFiring;
 
@@ -30,7 +32,6 @@ public class Shooter : MonoBehaviour
     }
     void Start()
     {
-        
         if (useAI)
         {
             isFiring = true;
@@ -42,8 +43,6 @@ public class Shooter : MonoBehaviour
         Debug.Log(playerFireRate);
     }
 
-
-
     void Update()
     {
         Fire();
@@ -51,11 +50,11 @@ public class Shooter : MonoBehaviour
 
     void Fire()
     {
-        if (isFiring && fireCoroutine == null)
+        if (autoFire && fireCoroutine == null)
         {
             fireCoroutine = StartCoroutine(FireContinuosly());
         }
-        else if (!isFiring && fireCoroutine != null)
+        else if (!autoFire && fireCoroutine != null)
         {
             StopCoroutine(fireCoroutine);
             fireCoroutine = null;
@@ -78,7 +77,7 @@ public class Shooter : MonoBehaviour
         float randomFireRate;
         if(!useAI)
         {
-            randomFireRate = Random.Range (playerFireRate - fireRateModifikator, playerFireRate + fireRateModifikator);
+            randomFireRate = playerFireRate;
         }
         else
         {

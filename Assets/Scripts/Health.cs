@@ -46,8 +46,8 @@ public class Health : MonoBehaviour
             DamageDealer damageDealer = other.GetComponent<DamageDealer>();
             if(damageDealer != null)
             {
-                damageDealer.Hit();
                 Takedamage(damageDealer.GetDamage());
+                damageDealer.Hit();
             }
         }
         else if (other.tag == "PowerUps" && isPlayer)

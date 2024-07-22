@@ -291,8 +291,9 @@ MonoBehaviour:
   playerMoveSpeed: 5
   paddingleft: 0.5
   paddingright: 0.5
-  paddingup: 7
+  paddingup: 8
   paddingdown: 2
+  joystick: {fileID: 0}
 --- !u!114 &-410603746121063963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  shield: 0
+  shield: 10
   scoreToAdd: 0
   hitEffect: {fileID: 4086602096136435927, guid: 2fc5509a81406f347a7b783fd7931a01, type: 3}
   destroyEffect: {fileID: 5605177456112190921, guid: 130a6614160f5974aa41e2bd2058e4c9, type: 3}
@@ -327,7 +328,7 @@ MonoBehaviour:
   projectileSpeed: 12
   projectileLiveTime: 3
   enemyFireRate: 0.5
-  playerFireRate: 0.2
+  playerFireRate: 0.22
   fireRateModifikator: 0
   minFireRate: 0.05
   useAI: 0

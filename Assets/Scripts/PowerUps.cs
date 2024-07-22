@@ -15,8 +15,6 @@ public class PowerUps : MonoBehaviour
    public void GetPowerUp(GameObject player)
    {
         Health health = player.GetComponent<Health>();
-        GameObject projectilePlayer = GameObject.FindWithTag("Playerbullet");
-        DamageDealer damageDealer = projectilePlayer.GetComponent<DamageDealer>();
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         Shooter shooter = player.GetComponent<Shooter>();
 
@@ -42,7 +40,7 @@ public class PowerUps : MonoBehaviour
             break;
 
             case "Damage":
-            damageDealer.AddDamage(damageModifier);
+            //ProjektileManager.instance.ApplyDamageModifier(damageModifier);
             
             break;
         }
