@@ -36,19 +36,23 @@ public class ScoreKeeper : MonoBehaviour
     public void AddScore(int value)
     {
        currentScore += value;
-       enemyKills += 1;
        Mathf.Clamp (currentScore, 0, int.MaxValue);
+       SpawnPowerUps();
+    }
+
+    void SpawnPowerUps()
+    {
+        enemyKills += 1;
        if (IsMultipleOf(enemyKills, 10))
        {
-        int randomIndex = Random.Range(0, powerUps.Length);
-        GameObject p = Instantiate(powerUps[randomIndex], transform.position, Quaternion.identity);
-        Rigidbody2D rigidbody2D = p.GetComponent<Rigidbody2D>();
-        if (rigidbody2D != null)
-        {
-            rigidbody2D.velocity = transform.up * -4;
-        }
+            int randomIndex = Random.Range(0, powerUps.Length);
+            GameObject p = Instantiate(powerUps[randomIndex], transform.position, Quaternion.identity);
+            Rigidbody2D rigidbody2D = p.GetComponent<Rigidbody2D>();
+            if (rigidbody2D != null)
+            {
+                rigidbody2D.velocity = transform.up * -4;
+            }
        }
-
     }
 
     public void ResetScore()
@@ -66,5 +70,6 @@ public class ScoreKeeper : MonoBehaviour
         }
         return number % divisor == 0;
     }
+
 
 }
