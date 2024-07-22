@@ -328,7 +328,7 @@ MonoBehaviour:
   projectileSpeed: 12
   projectileLiveTime: 3
   enemyFireRate: 0.5
-  playerFireRate: 0.22
+  playerFireRate: 0.2
   fireRateModifikator: 0
   minFireRate: 0.05
   useAI: 0
