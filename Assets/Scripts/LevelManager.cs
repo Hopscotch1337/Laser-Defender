@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject highScoreCanvas;
     [SerializeField] GameObject optionCanvas;
     [SerializeField] HighscoreManager highscoreManager;
-    [SerializeField] GameObject highscoreEntries;
+    [SerializeField] GameObject   highscoreEntries;
     [SerializeField] GameObject highscoreEntryUiPrefab;
     
     private ScoreKeeper scoreKeeper;
@@ -22,27 +22,16 @@ public class LevelManager : MonoBehaviour
     void Awake() 
     {
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
-        ManageSingleton();
     }
 
-     void ManageSingleton()
-    {
-        if(instance != null)
-        {
-            gameObject.SetActive(false);
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
+
 
     public void LoadGame()
     {
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
         scoreKeeper.ResetScore();
         SceneManager.LoadScene(1);
+        Debug.Log("loading game");
     }
 
     public void LoadGameOver()
@@ -53,6 +42,7 @@ public class LevelManager : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
+        Debug.Log("loading main menu");
     }
     
     public void QuitGame()
@@ -80,6 +70,7 @@ public class LevelManager : MonoBehaviour
         highScoreCanvas.SetActive(true);
         mainMenuCanvas.SetActive(false);
         ShowHighscores();
+       // ActivateAllChildren(highScoreCanvas.transform);
     }
 
     public void BackToMenu()
@@ -91,31 +82,51 @@ public class LevelManager : MonoBehaviour
 
     private void ShowHighscores()
     {
-        // Entfernt alle Kindobjekte von HighscoreEntries
+        // Entfernt alle Kindobjekte von highscoreEntries
         for (int i = highscoreEntries.transform.childCount - 1; i >= 0; i--)
         {
             Transform child = highscoreEntries.transform.GetChild(i);
             Destroy(child.gameObject);
+            Debug.Log("old highscores destroyed " + i);
         }
+        
 
-        // Holt die Highscore-Liste vom HighscoreManager
-        List<HighscoreEntry> highscoreEntries = highscoreManager.List();
 
-        // Erstellt UI-Elemente für jeden Highscore-Eintrag
-        foreach (HighscoreEntry entry in highscoreList)
+        var highscores = highscoreManager.List();
+        foreach (var highscore in highscores)
         {
-            GameObject entryUI = Instantiate(highscoreEntryUiPrefab, highscoreEntries.transform);
-            HighscoreEntryUI entryUIComponent = entryUI.GetComponent<HighscoreEntryUI>();
-
-            if (entryUIComponent != null)
-            {
-                entryUIComponent.SetName(entry.Name);
-                entryUIComponent.SetScore(entry.Score);
-            }
-            else
-            {
-                Debug.LogError("HighscoreEntryUI component is missing on the prefab.");
-            }
+            var entry = Instantiate(highscoreEntryUiPrefab, highscoreEntries.transform);
+            SetHighscoreEntryDetails(entry, highscore);
+            Debug.Log("Highscore entry created: " + highscore.Name + " - " + highscore.Score);
         }
     }
+
+    private void SetHighscoreEntryDetails(GameObject entry, HighscoreManager.HighscoreEntry highscore)
+    {
+        // Assuming your prefab has Text components for displaying the name and score
+        var nameText = entry.transform.Find("NameText").GetComponent<TMP_Text>();
+        var scoreText = entry.transform.Find("ScoreText").GetComponent<TMP_Text>();
+
+        if (nameText != null && scoreText != null)
+        {
+            nameText.text = highscore.Name;
+            scoreText.text = highscore.Score.ToString();
+        }
+        else
+        {
+            Debug.LogError("NameText or ScoreText component missing in highscore entry prefab.");
+        }
+    }
+
+    // private void ActivateAllChildren(Transform parent)
+    // {
+    //     foreach (Transform child in parent)
+    //     {
+    //         child.gameObject.SetActive(true);
+    //         Debug.Log("Activating child: " + child.name);
+    //         ActivateAllChildren(child); // Rekursiv alle Kinder aktivieren
+    //     }
+    // }
+
+
 }

@@ -41,6 +41,7 @@ public class UIGameOver : MonoBehaviour
             newHighscore.gameObject.SetActive(false);
             inputName.gameObject.SetActive(false);
             saveButton.gameObject.SetActive(false);
+            highscoreManager.Save();
 
         }
     }

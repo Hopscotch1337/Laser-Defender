@@ -479,10 +479,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
+  m_fontSize: 72
   m_fontSizeBase: 14
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1102,18 +1102,6 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 348870710322321236, guid: 82fe7ab7cd0f32940bb4cd072a213a12, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 348870710322321236, guid: 82fe7ab7cd0f32940bb4cd072a213a12, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 348870710322321236, guid: 82fe7ab7cd0f32940bb4cd072a213a12, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 348870710322321236, guid: 82fe7ab7cd0f32940bb4cd072a213a12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 208.06882
       objectReference: {fileID: 0}
@@ -1391,7 +1379,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1680693181}
+      - m_Target: {fileID: 4472547655148828202, guid: 28b6d8f8af2981241b83e402d94fda12, type: 3}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
         m_MethodName: LoadMainMenu
         m_Mode: 1
@@ -1710,6 +1698,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4472547655148828202, guid: 28b6d8f8af2981241b83e402d94fda12, type: 3}
+      propertyPath: highscoreManager
+      value: 
+      objectReference: {fileID: 578300068}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1776,17 +1768,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbbc029d2b03e0f49bbc2e843de12981, type: 3}
---- !u!114 &1680693181 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4472547655148828202, guid: 28b6d8f8af2981241b83e402d94fda12, type: 3}
-  m_PrefabInstance: {fileID: 1332018763}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7ca183b3d6c56e44ad856adfa67ba1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1805481473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2391,7 +2372,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1680693181}
+      - m_Target: {fileID: 4472547655148828202, guid: 28b6d8f8af2981241b83e402d94fda12, type: 3}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
         m_MethodName: LoadGame
         m_Mode: 1
