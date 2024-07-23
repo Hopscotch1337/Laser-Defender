@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4472547655148828202
 MonoBehaviour:
@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneLoadDelay: 2
-  mainMenuCanvas: {fileID: 0}
-  highScoreCanvas: {fileID: 0}
-  optionCanvas: {fileID: 0}
+  mainMenuCanvas: {fileID: 2905054818394044527, guid: f8c20b828aab48e49872802937290103, type: 3}
+  highScoreCanvas: {fileID: 9049456879238890533, guid: 47027ae1c24622f48ac17d3658dcf9f0, type: 3}
+  optionCanvas: {fileID: 484953095285405587, guid: dc08ba7ed0c4c1648a5db6257d034534, type: 3}
+  options: {fileID: 1704013718798691767, guid: dc08ba7ed0c4c1648a5db6257d034534, type: 3}
   highscoreManager: {fileID: 6730380623879948675, guid: 82fe7ab7cd0f32940bb4cd072a213a12, type: 3}
-  highscoreEntries: {fileID: 0}
+  highscoreEntries: {fileID: 9049456879238890533, guid: 47027ae1c24622f48ac17d3658dcf9f0, type: 3}
   highscoreEntryUiPrefab: {fileID: 884059487865777067, guid: 9d67bbd0b3b7b7844a23c849b1c8e899, type: 3}

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] int health = 50;
+    [SerializeField] float health = 50f;
     [SerializeField] int shield = 0;
     [SerializeField] int scoreToAdd = 100;
     [SerializeField] ParticleSystem hitEffect;
@@ -16,6 +16,8 @@ public class Health : MonoBehaviour
     ScoreKeeper scoreKeeper;
     LevelManager levelManager;
     EnemyAttributes enemyAttributes;
+
+    [SerializeField] float enemyHealthfixed;
 
     void Awake()
     {
@@ -32,7 +34,7 @@ public class Health : MonoBehaviour
 
     void UpdateAttributes()
     {
-        if (!isPlayer)
+        if (!isPlayer && enemyAttributes != null)
         {
             health = Mathf.RoundToInt(health * enemyAttributes.GetHealthMultiplier());
         }
@@ -62,18 +64,31 @@ public class Health : MonoBehaviour
         
     }
 
-    public int GetHealth()
+    public float GetHealth()
     {
-        return health;
+        if (isPlayer)
+        {
+            return health;
+        }
+        else
+        {
+            return enemyHealthfixed;
+        }
+        
     }
     public int GetShield()
     {
         return shield;
     }
-    public void AddHealth(int addHealth)
+    public void AddHealth(float addHealth)
     {
         health += addHealth;
     }
+     public void AddEnemyHealth(float addHealth)
+    {
+        health = addHealth;
+    }
+
     public void AddShield(int addShield)
     {
         shield += addShield;

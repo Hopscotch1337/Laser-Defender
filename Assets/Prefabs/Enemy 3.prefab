@@ -85,8 +85,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1046858102582206729, guid: 0ac232c39cf6093478ca153fbbbde69e, type: 3}
     - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
+      propertyPath: enemyfixedFireRate
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: projectileLiveTime
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
+      propertyPath: enemyAttackspeedfixed
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 8190833354322726377, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: health
@@ -95,6 +103,10 @@ PrefabInstance:
     - target: {fileID: 8190833354322726377, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: scoreToAdd
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190833354322726377, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
+      propertyPath: enemyHealthfixed
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8533756244828280372, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: damage

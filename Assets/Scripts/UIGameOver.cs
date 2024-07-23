@@ -26,7 +26,7 @@ public class UIGameOver : MonoBehaviour
     void Start()
     {
         scoreText.text = scoreKeeper.GetScore().ToString("00000000");
-        bool isNewHighscore = highscoreManager.IsNewHighscore(scoreKeeper.GetScore());
+        bool isNewHighscore = highscoreManager.IsNewHighscore((int)scoreKeeper.GetScore());
         newHighscore.gameObject.SetActive(isNewHighscore);
         inputName.gameObject.SetActive(isNewHighscore);
         saveButton.gameObject.SetActive(isNewHighscore);
@@ -37,7 +37,7 @@ public class UIGameOver : MonoBehaviour
         string playerName = inputName.text;
         if (!string.IsNullOrWhiteSpace(playerName))
         {
-            highscoreManager.Add(playerName, scoreKeeper.GetScore());
+            highscoreManager.Add(playerName, (int)scoreKeeper.GetScore());
             newHighscore.gameObject.SetActive(false);
             inputName.gameObject.SetActive(false);
             saveButton.gameObject.SetActive(false);

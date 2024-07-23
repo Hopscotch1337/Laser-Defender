@@ -5,10 +5,11 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreKeeper : MonoBehaviour
 {
-    [SerializeField] int currentScore = 0;
+    [SerializeField] float currentScore = 0;
     [SerializeField] GameObject[] powerUps;
     static ScoreKeeper instance;
     int enemyKills =0;
+    [SerializeField] float multip = 1f;
 
 
     void Awake() 
@@ -28,16 +29,21 @@ public class ScoreKeeper : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    public int GetScore()
+    public float GetScore()
     {
         return currentScore;
     }
 
     public void AddScore(int value)
     {
-       currentScore += value;
+       currentScore = currentScore +(value * multip);
        Mathf.Clamp (currentScore, 0, int.MaxValue);
        SpawnPowerUps();
+    }
+
+    public void UpdateScoreMultiplier(float multiplier)
+    {
+        multip = multiplier;
     }
 
     void SpawnPowerUps()

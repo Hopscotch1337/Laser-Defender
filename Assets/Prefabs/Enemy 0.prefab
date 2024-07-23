@@ -139,7 +139,8 @@ MonoBehaviour:
   scoreToAdd: 50
   hitEffect: {fileID: 4086602096136435927, guid: 2fc5509a81406f347a7b783fd7931a01, type: 3}
   destroyEffect: {fileID: 5605177456112190921, guid: 130a6614160f5974aa41e2bd2058e4c9, type: 3}
-  applyCameraShake: 0
+  isPlayer: 0
+  enemyHealthfixed: 30
 --- !u!114 &8533756244828280372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,11 +169,12 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6643142321296753615, guid: 2007957989f97fd42909805b652b10c0, type: 3}
   projectileSpeed: 5
   projectileLiveTime: 3
-  enemyFireRate: 1
-  playerFireRate: 0
+  playerFireRate: 1
   fireRateModifikator: 0.4
   minFireRate: 0.2
   useAI: 1
+  enemyFireRate: 1
+  enemyfixedFireRate: 1
   isFiring: 0
 --- !u!1 &8390246403008220483
 GameObject:

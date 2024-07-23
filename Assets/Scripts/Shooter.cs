@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,7 +10,6 @@ public class Shooter : MonoBehaviour
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileLiveTime = 5f;
-    [SerializeField] float enemyFireRate = 0.5f;
     [SerializeField] float playerFireRate;
 
 
@@ -17,13 +17,16 @@ public class Shooter : MonoBehaviour
     [SerializeField] float fireRateModifikator = 0f;
     [SerializeField] float minFireRate = 0.2f;
     [SerializeField] bool useAI;
+    [SerializeField] float enemyFireRate;
+    [SerializeField] float enemyfixedFireRate;
     bool autoFire = true; // Android Verison
 
 
     [HideInInspector] public bool isFiring;
-
     Coroutine fireCoroutine;
     AudioPlayer audioPlayer;
+    
+    
     
 
     void Awake()
@@ -37,10 +40,22 @@ public class Shooter : MonoBehaviour
             isFiring = true;
         }
     }
+        
+    
     public void AddAttackSpeed(float addAttackSpeed)
     {
         playerFireRate = playerFireRate - addAttackSpeed;
-        Debug.Log(playerFireRate);
+        Debug.Log("playerFireRate" + playerFireRate);
+    }
+
+    public void AddEnemyAttackSpeed(float addAttackSpeed)
+    {
+        enemyFireRate = addAttackSpeed;
+        Debug.Log("enemyFireRate" + enemyFireRate);
+    }
+    public float GetEnemyAttackspeed()
+    {
+        return enemyfixedFireRate;
     }
 
     void Update()

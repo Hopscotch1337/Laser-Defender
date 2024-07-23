@@ -11,17 +11,20 @@ public class LevelManager : MonoBehaviour
     [SerializeField] float sceneLoadDelay = 1f;
     [SerializeField] GameObject mainMenuCanvas;
     [SerializeField] GameObject highScoreCanvas;
-    [SerializeField] GameObject optionCanvas;
     [SerializeField] HighscoreManager highscoreManager;
     [SerializeField] GameObject   highscoreEntries;
     [SerializeField] GameObject highscoreEntryUiPrefab;
+    [SerializeField] GameObject optionCanvas;
+    [SerializeField] Options options;
     
     private ScoreKeeper scoreKeeper;
-    static LevelManager instance;
-
+    
+    
+    
     void Awake() 
     {
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
+
     }
 
 
@@ -29,9 +32,10 @@ public class LevelManager : MonoBehaviour
     public void LoadGame()
     {
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        options.UpdateEnemyStats();
         scoreKeeper.ResetScore();
         SceneManager.LoadScene(1);
-        Debug.Log("loading game");
+        
     }
 
     public void LoadGameOver()
@@ -42,12 +46,10 @@ public class LevelManager : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
-        Debug.Log("loading main menu");
     }
     
     public void QuitGame()
     {
-        Debug.Log("Quitting game...");
         Application.Quit();
     }
 
@@ -75,6 +77,8 @@ public class LevelManager : MonoBehaviour
 
     public void BackToMenu()
     {
+        Options options = optionCanvas.GetComponent<Options>();
+        options.UpdateEnemyStats();
         optionCanvas.SetActive(false);
         highScoreCanvas.SetActive(false);
         mainMenuCanvas.SetActive(true);

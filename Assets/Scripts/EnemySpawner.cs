@@ -7,8 +7,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] List<WaveConfigSO> waveConfigs;
     [SerializeField] float timeBetweenWaves = 2f;
     [SerializeField] bool isLooping = true;
+    [SerializeField] bool inUI = true;
     WaveConfigSO currentWave;
     EnemyAttributes enemyAttributes;
+
     
 
     void Awake() 
@@ -35,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
                 }
                 yield return new WaitForSeconds(timeBetweenWaves);
             
-                if (waveIndex == waveConfigs.Count - 1)
+                if (waveIndex == waveConfigs.Count - 1 && !inUI)
                 {
                     enemyAttributes.IncreaseHealthMultiplier(1.2f);
                 }
@@ -49,5 +51,14 @@ public class EnemySpawner : MonoBehaviour
     public WaveConfigSO GetCurrentWave()
     {
         return currentWave;
+    }
+
+    public float GetTimeBetweenWaves()
+    {
+        return timeBetweenWaves;
+    }
+    public void ChangeTimeBetweenWaves(float newSpawnTime)
+    {
+        timeBetweenWaves = newSpawnTime;
     }
 }
