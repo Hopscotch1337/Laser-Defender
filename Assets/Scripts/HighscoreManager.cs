@@ -26,15 +26,12 @@ public class HighscoreManager : MonoBehaviour
     private const int MaxHighscores = 8;
     private string HighscoreFilePath => Path.Combine(Application.persistentDataPath, FileName);
     private List<HighscoreEntry> highscore = new List<HighscoreEntry>();
-    private static HighscoreManager instance;
 
     private void Awake() 
     {
         Load();
     }
 
-
-    
     private void OnDestroy() 
     {
         Save();

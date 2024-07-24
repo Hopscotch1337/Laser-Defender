@@ -1235,6 +1235,7 @@ GameObject:
   - component: {fileID: 901245879}
   - component: {fileID: 901245878}
   - component: {fileID: 901245877}
+  - component: {fileID: 901245880}
   m_Layer: 5
   m_Name: MainMenue
   m_TagString: Untagged
@@ -1357,6 +1358,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901245875}
   m_CullTransparentMesh: 1
+--- !u!114 &901245880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901245875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6aaf3ecb4df494f9dafcc9e846f0f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 901245877}
 --- !u!1 &906064333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,6 +2177,7 @@ GameObject:
   - component: {fileID: 2015427238}
   - component: {fileID: 2015427237}
   - component: {fileID: 2015427236}
+  - component: {fileID: 2015427239}
   m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
@@ -2235,9 +2250,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4472547654261409889}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadGame
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2285,6 +2300,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015427234}
   m_CullTransparentMesh: 1
+--- !u!114 &2015427239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015427234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6aaf3ecb4df494f9dafcc9e846f0f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 2015427236}
 --- !u!1001 &2048341583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4653,8 +4681,6 @@ MonoBehaviour:
   highscoreManager: {fileID: 6730380623383453984}
   highscoreEntries: {fileID: 9049456879238890533, guid: 47027ae1c24622f48ac17d3658dcf9f0, type: 3}
   highscoreEntryUiPrefab: {fileID: 884059487865777067, guid: 9d67bbd0b3b7b7844a23c849b1c8e899, type: 3}
-  optionCanvas: {fileID: 5035995925788231443}
-  options: {fileID: 6123851693608738103}
 --- !u!1 &4506659265820802100
 GameObject:
   m_ObjectHideFlags: 0
@@ -5236,7 +5262,6 @@ MonoBehaviour:
   healthDropdown: {fileID: 1162173064178871720}
   fireRateDropdown: {fileID: 2990043807196970653}
   spawnRateDropdown: {fileID: 422244406862474826}
-  scoreKeeper: {fileID: 0}
 --- !u!222 &6142841839536152811
 CanvasRenderer:
   m_ObjectHideFlags: 0

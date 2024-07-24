@@ -5,23 +5,24 @@ using TMPro;
 
 public class Options : MonoBehaviour
 {
-    [SerializeField] float enemyHealth = 1f;
-    [SerializeField] float timeBetweenWaves = 0f; 
-    [SerializeField] float enemyFireRate = 1f;
+    [SerializeField] float enemyHealth;
+    [SerializeField] float timeBetweenWaves; 
+    [SerializeField] float enemyFireRate;
 
     [SerializeField] List<GameObject> enemyPrefabs;
     [SerializeField] private TMP_Dropdown healthDropdown;
     [SerializeField] private TMP_Dropdown fireRateDropdown;
     [SerializeField] private TMP_Dropdown spawnRateDropdown;
-    [SerializeField] ScoreKeeper scoreKeeper;
+    ScoreKeeper scoreKeeper;
 
     float scoreMultiplierHealth = 1f;
     float scoreMultiplierSpawn = 1f;
     float scoreMultiplierFireRate = 1f;
 
-    static Options instance;
+    public static Options instance;
+    
 
-void Awake() 
+    void Awake() 
     {
         ManageSingleton();
     }
@@ -37,6 +38,10 @@ void Awake()
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
+    void Start()
+    {
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
     }
 
 
@@ -135,7 +140,7 @@ void Awake()
         enemySpawner.ChangeTimeBetweenWaves(timeBetweenWaves);
         Debug.Log("--enemy spawn time updated to " + timeBetweenWaves);
 
-        ScoreKeeper scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
         scoreKeeper.UpdateScoreMultiplier(scoreMultiplierFireRate * scoreMultiplierHealth * scoreMultiplierSpawn);
     }
 

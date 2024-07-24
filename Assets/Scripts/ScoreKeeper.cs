@@ -7,11 +7,10 @@ public class ScoreKeeper : MonoBehaviour
 {
     [SerializeField] float currentScore = 0;
     [SerializeField] GameObject[] powerUps;
-    static ScoreKeeper instance;
     int enemyKills =0;
     [SerializeField] float multip = 1f;
 
-
+    public static ScoreKeeper instance;
     void Awake() 
     {
         ManageSingleton();

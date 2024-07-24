@@ -9,32 +9,69 @@ using System;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] float sceneLoadDelay = 1f;
-    [SerializeField] GameObject mainMenuCanvas;
-    [SerializeField] GameObject highScoreCanvas;
-    [SerializeField] HighscoreManager highscoreManager;
-    [SerializeField] GameObject   highscoreEntries;
     [SerializeField] GameObject highscoreEntryUiPrefab;
-    [SerializeField] GameObject optionCanvas;
-    [SerializeField] Options options;
-    
-    private ScoreKeeper scoreKeeper;
-    
-    
-    
-    void Awake() 
-    {
-        scoreKeeper = FindObjectOfType<ScoreKeeper>();
 
+
+    GameObject optionCanvas;
+    GameObject highScoreCanvas;
+    GameObject mainMenuCanvas;
+
+    GameObject highscoreEntries;
+    HighscoreManager highscoreManager;
+
+    public static LevelManager instance;
+
+    public LevelManager()
+    {
     }
 
+    void Awake() 
+    {
+        ManageSingleton();
+    }
+    
+    void ManageSingleton()
+    {
+        if(instance != null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+    void Start()
+    {
+        optionCanvas = FindDeactivatedGameObjectByName("OptionCanvas");
+        highScoreCanvas = FindDeactivatedGameObjectByName("HighScoreCanvas");
+        mainMenuCanvas = FindDeactivatedGameObjectByName("MenuCanvas");
+        highscoreManager = FindObjectOfType<HighscoreManager>();
+        highscoreEntries = highScoreCanvas.transform.Find("HighscoreEntries").gameObject;
+    }
 
+    GameObject FindDeactivatedGameObjectByName(string name)
+    {
+        Transform[] allTransforms = Resources.FindObjectsOfTypeAll<Transform>();
+        foreach (Transform t in allTransforms)
+        {
+            if (t.gameObject.name == name)
+            {
+                return t.gameObject;
+            }
+        }
+        return null;
+    }
 
     public void LoadGame()
     {
-        scoreKeeper = FindObjectOfType<ScoreKeeper>();
-        options.UpdateEnemyStats();
-        scoreKeeper.ResetScore();
+        Options.instance.UpdateEnemyStats();
+        ScoreKeeper.instance.ResetScore();
         SceneManager.LoadScene(1);
+        EnemyAttributes.instance.ResetHealthMultiplier();
+
         
     }
 
@@ -61,14 +98,24 @@ public class LevelManager : MonoBehaviour
 
     public void OpenOptions()
     {
-        optionCanvas.SetActive(true);
+        optionCanvas = FindDeactivatedGameObjectByName("OptionCanvas");
+        highScoreCanvas = FindDeactivatedGameObjectByName("HighScoreCanvas");
+        mainMenuCanvas = FindDeactivatedGameObjectByName("MenuCanvas"); 
+        optionCanvas.transform.GetChild(0).gameObject.SetActive(true);
+        optionCanvas.transform.GetChild(1).gameObject.SetActive(true);
         highScoreCanvas.SetActive(false);
         mainMenuCanvas.SetActive(false);
+        
     }
 
     public void OpenHighscore()
     {
-        optionCanvas.SetActive(false);
+        highscoreManager = FindObjectOfType<HighscoreManager>();
+        highScoreCanvas = FindDeactivatedGameObjectByName("HighScoreCanvas"); 
+        optionCanvas = FindDeactivatedGameObjectByName("OptionCanvas");
+        mainMenuCanvas = FindDeactivatedGameObjectByName("MenuCanvas"); 
+        optionCanvas.transform.GetChild(0).gameObject.SetActive(false);
+        optionCanvas.transform.GetChild(1).gameObject.SetActive(false);
         highScoreCanvas.SetActive(true);
         mainMenuCanvas.SetActive(false);
         ShowHighscores();
@@ -77,25 +124,24 @@ public class LevelManager : MonoBehaviour
 
     public void BackToMenu()
     {
-        Options options = optionCanvas.GetComponent<Options>();
-        options.UpdateEnemyStats();
-        optionCanvas.SetActive(false);
+        Options.instance.UpdateEnemyStats();
+        optionCanvas.transform.GetChild(0).gameObject.SetActive(false);
+        optionCanvas.transform.GetChild(1).gameObject.SetActive(false);
         highScoreCanvas.SetActive(false);
         mainMenuCanvas.SetActive(true);
     }
 
     private void ShowHighscores()
     {
+        highscoreEntries = highScoreCanvas.transform.Find("HighscoreEntries").gameObject;
         // Entfernt alle Kindobjekte von highscoreEntries
         for (int i = highscoreEntries.transform.childCount - 1; i >= 0; i--)
         {
             Transform child = highscoreEntries.transform.GetChild(i);
             Destroy(child.gameObject);
-            Debug.Log("old highscores destroyed " + i);
+            Debug.Log("old highscores destroyed on list entry " + i);
         }
         
-
-
         var highscores = highscoreManager.List();
         foreach (var highscore in highscores)
         {
@@ -121,16 +167,4 @@ public class LevelManager : MonoBehaviour
             Debug.LogError("NameText or ScoreText component missing in highscore entry prefab.");
         }
     }
-
-    // private void ActivateAllChildren(Transform parent)
-    // {
-    //     foreach (Transform child in parent)
-    //     {
-    //         child.gameObject.SetActive(true);
-    //         Debug.Log("Activating child: " + child.name);
-    //         ActivateAllChildren(child); // Rekursiv alle Kinder aktivieren
-    //     }
-    // }
-
-
 }

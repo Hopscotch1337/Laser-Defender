@@ -7,7 +7,7 @@ public class EnemyAttributes : MonoBehaviour
 {
     [SerializeField] float healthMultiplier = 1f;
     //public float shieldMultiplier = 1f;
-    static EnemyAttributes instance;
+    public static EnemyAttributes instance;
 
     private void Awake()
     {
@@ -29,6 +29,10 @@ public class EnemyAttributes : MonoBehaviour
     public float GetHealthMultiplier()
     {
         return healthMultiplier;
+    }
+    public void ResetHealthMultiplier()
+    {
+        healthMultiplier = 1f;
     }
 
 
