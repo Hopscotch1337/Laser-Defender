@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: enemyFireRate
-      value: 1.8
+      value: 1.2800001
       objectReference: {fileID: 0}
     - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: projectileSpeed
@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 1046858102582206729, guid: 0ac232c39cf6093478ca153fbbbde69e, type: 3}
     - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: enemyfixedFireRate
-      value: 1.8
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: projectileLiveTime
@@ -98,11 +98,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8190833354322726377, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: health
-      value: 60
+      value: 78
       objectReference: {fileID: 0}
     - target: {fileID: 8190833354322726377, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: scoreToAdd
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8190833354322726377, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: enemyHealthfixed
@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8533756244828280372, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: damage
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

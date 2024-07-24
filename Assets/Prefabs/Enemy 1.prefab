@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: enemyFireRate
-      value: 0.8
+      value: 0.64000005
       objectReference: {fileID: 0}
     - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: projectileSpeed
@@ -90,7 +90,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8190833354322726377, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: health
-      value: 20
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190833354322726377, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
+      propertyPath: scoreToAdd
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8190833354322726377, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: enemyHealthfixed
