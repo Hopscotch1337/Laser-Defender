@@ -21,10 +21,6 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager instance;
 
-    public LevelManager()
-    {
-    }
-
     void Awake() 
     {
         ManageSingleton();
@@ -70,13 +66,11 @@ public class LevelManager : MonoBehaviour
         Options.instance.UpdateEnemyStats();
         ScoreKeeper.instance.ResetScore();
         SceneManager.LoadScene(1);
-        EnemyAttributes.instance.ResetHealthMultiplier();
-
-        
     }
 
     public void LoadGameOver()
     {
+        EnemyAttributes.instance.ResetHealthMultiplier();
         StartCoroutine(WaitAndLoad(2, sceneLoadDelay));
     }
 

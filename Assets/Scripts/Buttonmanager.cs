@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Buttonmanager : MonoBehaviour
 {
-    [SerializeField] Button button;
+    [SerializeField] private Button button;
 
     void Start()
     {
@@ -16,13 +16,16 @@ public class Buttonmanager : MonoBehaviour
     {
         AssignButtons();
     }
-    
 
-    void AssignButtons()
+    private void AssignButtons()
     {
+        // Überprüfe, ob die Instanz von LevelManager vorhanden ist
         if (LevelManager.instance != null)
         {
+            // Entferne alle vorhandenen Listener vom Button
             button.onClick.RemoveAllListeners();
+
+            // Füge den passenden Listener basierend auf dem Namen des Buttons hinzu
             switch (button.name)
             {
                 case "Restart":
@@ -31,28 +34,28 @@ public class Buttonmanager : MonoBehaviour
                     break;
                 case "MainMenue":
                     button.onClick.AddListener(LevelManager.instance.LoadMainMenu);
-                    break;    
+                    break;
                 case "BackButton":
                     button.onClick.AddListener(LevelManager.instance.BackToMenu);
                     break;
                 case "Options":
                     button.onClick.AddListener(LevelManager.instance.OpenOptions);
-                    break; 
+                    break;
                 case "Highscore":
                     button.onClick.AddListener(LevelManager.instance.OpenHighscore);
-                    break; 
+                    break;
                 case "EndButton":
                     button.onClick.AddListener(LevelManager.instance.QuitGame);
                     break;
                 default:
-                    Debug.LogWarning("No method assigned for button: " + button.name);
+                    Debug.LogWarning($"No method assigned for button: {button.name}");
                     break;
-            } 
+            }
         }
-        // else
-        // {
-        //     Debug.LogError("LevelManager Singleton not found!");
-        // }
+        else
+        {
+            // Fehlerprotokollierung, wenn die LevelManager-Instanz nicht gefunden wird
+            Debug.LogError("LevelManager Singleton not found!");
+        }
     }
-
 }

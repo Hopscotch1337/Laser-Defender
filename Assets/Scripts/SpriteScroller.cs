@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class SpriteScroller : MonoBehaviour
 {
+    [SerializeField] private Vector2 scrollSpeed;
 
-[SerializeField] Vector2 scrollSpeed;
+    private Vector2 offset;
+    private Material material;
 
-Vector2 offset;
-Material material;
-    void Awake()
+    private void Awake()
     {
+        // Get the Material component from the SpriteRenderer
         material = GetComponent<SpriteRenderer>().material;
     }
 
-    void Update()
+    private void Update()
     {
-            offset = scrollSpeed * Time.deltaTime;
-            material.mainTextureOffset += offset;
+        // Calculate the offset based on scroll speed and time delta
+        offset = scrollSpeed * Time.deltaTime;
+        
+        // Update the texture offset to create a scrolling effect
+        material.mainTextureOffset += offset;
     }
 }

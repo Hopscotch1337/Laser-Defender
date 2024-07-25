@@ -2,36 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Options : MonoBehaviour
 {
-    [SerializeField] float enemyHealth;
-    [SerializeField] float timeBetweenWaves; 
-    [SerializeField] float enemyFireRate;
-    [SerializeField] float timeBetweenEnemy;
+    [SerializeField] private float enemyHealth;
+    [SerializeField] private float timeBetweenWaves;
+    [SerializeField] private float enemyFireRate;
+    [SerializeField] private float timeBetweenEnemy;
 
-    [SerializeField] List<GameObject> enemyPrefabs;
+    [SerializeField] private List<GameObject> enemyPrefabs;
     [SerializeField] private TMP_Dropdown healthDropdown;
     [SerializeField] private TMP_Dropdown fireRateDropdown;
     [SerializeField] private TMP_Dropdown waveRateDropdown;
     [SerializeField] private TMP_Dropdown spawnRateDropdown;
-    ScoreKeeper scoreKeeper;
+    [SerializeField] private TextMeshProUGUI scoreMultiplierText;
 
-    float scoreMultiplierHealth = 1f;
-    float scoreMultiplierWave = 1f;
-    float scoreMultiplierSpawn = 1f;
-    float scoreMultiplierFireRate = 1f;
+    private float scoreMultiplierHealth = 1f;
+    private float scoreMultiplierWave = 1f;
+    private float scoreMultiplierSpawn = 1f;
+    private float scoreMultiplierFireRate = 1f;
 
     public static Options instance;
-    
 
-    void Awake() 
+    private void Awake()
     {
         ManageSingleton();
     }
-    void ManageSingleton()
+
+    private void ManageSingleton()
     {
-        if(instance != null)
+        if (instance != null)
         {
             gameObject.SetActive(false);
             Destroy(gameObject);
@@ -42,18 +43,13 @@ public class Options : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    void Start()
-    {
-        scoreKeeper = FindObjectOfType<ScoreKeeper>();
-    }
 
-
- public void DropdownValueChangedHealth(TMP_Dropdown dropdown)
+    public void DropdownValueChangedHealth(TMP_Dropdown dropdown)
     {
         switch (dropdown.value)
         {
             case 0:
-                enemyHealth = 0.7f;
+                enemyHealth = 0.8f;
                 scoreMultiplierHealth = 0.6f;
                 break;
             case 1:
@@ -93,7 +89,6 @@ public class Options : MonoBehaviour
                 scoreMultiplierFireRate = 1f;
                 break;
         }
-        
         Debug.Log("Enemy firerate ready to updated to: " + enemyFireRate);
     }
 
@@ -147,6 +142,14 @@ public class Options : MonoBehaviour
 
     public void UpdateEnemyStats()
     {
+        UpdateEnemyHealth();
+        UpdateEnemyFireRate();
+        UpdateEnemySpawner();
+        UpdateScoreMultiplier();
+    }
+
+    private void UpdateEnemyHealth()
+    {
         for(int i = 0; i < enemyPrefabs.Count; i++)
         {
             Health healthScript = enemyPrefabs[i].GetComponent<Health>();
@@ -155,23 +158,36 @@ public class Options : MonoBehaviour
             healthScript.AddEnemyHealth(additionalHealth);
             Debug.Log("--prefab" + i + " health updated " + additionalHealth);
         }
-         for(int i = 0; i < enemyPrefabs.Count; i++)
+    }
+
+    private void UpdateEnemyFireRate()
+    {
+        for(int i = 0; i < enemyPrefabs.Count; i++)
         {
             Shooter shooterScript = enemyPrefabs[i].GetComponent<Shooter>();
-            float currentAttackspeed = shooterScript.GetEnemyAttackspeed();
+            float currentAttackspeed = shooterScript.GetEnemyAttackSpeed();
             float additionalAttackspeed = currentAttackspeed * enemyFireRate;
             shooterScript.AddEnemyAttackSpeed(additionalAttackspeed);
             Debug.Log("--prefab" + i +" attackspeed updated" + additionalAttackspeed);
         }
+    }
+
+    private void UpdateEnemySpawner()
+    {
         EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
         enemySpawner.ChangeTimeBetweenWaves(timeBetweenWaves);
         Debug.Log("--Wave spawn time updated to " + timeBetweenWaves);
-        
+
         enemySpawner.ChangeTimeBetweenEnemies(timeBetweenEnemy);
         Debug.Log("--Enemy spawn time updated to " + timeBetweenEnemy);
-
-        ScoreKeeper.instance.UpdateScoreMultiplier(scoreMultiplierFireRate * scoreMultiplierHealth * scoreMultiplierWave * scoreMultiplierSpawn);
     }
 
-    
+    private void UpdateScoreMultiplier()
+    {
+        float totalMultiplier = scoreMultiplierFireRate * scoreMultiplierHealth * scoreMultiplierWave * scoreMultiplierSpawn;
+        float roundedMultiplier = (float)Math.Round(totalMultiplier, 2);
+        ScoreKeeper.instance.UpdateScoreMultiplier(roundedMultiplier);
+        scoreMultiplierText.text = "Score x" + roundedMultiplier;
+        Debug.Log("--Score multiplier updated to " + roundedMultiplier);
+    }
 }

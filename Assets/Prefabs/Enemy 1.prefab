@@ -8,13 +8,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 552608766901729557, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 906787839566809726, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 906787839566809726, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: m_LocalScale.y
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 906787839566809726, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -60,21 +64,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3066759781132364944, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 1258291199
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434723954448252222, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6397980759424464959, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0ad93ed185e6d5045a2ec14e9a7caf01, type: 3}
+    - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
+      propertyPath: useAI
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: baseFireRate
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: enemyFireRate
-      value: 0.64000005
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: projectileSpeed
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
+      propertyPath: fireRateModifier
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
+      propertyPath: enemyFixedFireRate
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7160942007460577509, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: enemyfixedFireRate
@@ -90,11 +114,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8190833354322726377, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: health
-      value: 26
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8190833354322726377, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: scoreToAdd
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190833354322726377, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
+      propertyPath: enemyHealthFixed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8190833354322726377, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
       propertyPath: enemyHealthfixed
@@ -105,7 +133,8 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2808992922666230078, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}

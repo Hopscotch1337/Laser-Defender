@@ -1,157 +1,171 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] float health = 50f;
-    [SerializeField] int shield = 0;
-    [SerializeField] int scoreToAdd = 100;
-    [SerializeField] ParticleSystem hitEffect;
-    [SerializeField] ParticleSystem destroyEffect;
-    CameraShake cameraShake;
-    [SerializeField] bool isPlayer;
-    AudioPlayer audioPlayer;
-    ScoreKeeper scoreKeeper;
-    LevelManager levelManager;
-    EnemyAttributes enemyAttributes;
+    [Header("General")]
+    [SerializeField] private float health = 50f;
+    [SerializeField] private int shield = 0;
+    [SerializeField] private int scoreToAdd = 100;
+    [SerializeField] private ParticleSystem hitEffect;
+    [SerializeField] private ParticleSystem destroyEffect;
 
-    [SerializeField] float enemyHealthfixed;
+    [Header("Player - Enemy")]
+    [SerializeField] private bool isPlayer;
+    [SerializeField] private float enemyHealthFixed;
+    [SerializeField] private TextMeshPro healthBar;
 
-    void Awake()
+    private CameraShake cameraShake;
+    private AudioPlayer audioPlayer;
+    private ScoreKeeper scoreKeeper;
+    private LevelManager levelManager;
+    private EnemyAttributes enemyAttributes;
+
+    private void Awake()
     {
         cameraShake = Camera.main.GetComponent<CameraShake>();
         audioPlayer = FindObjectOfType<AudioPlayer>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
         levelManager = FindObjectOfType<LevelManager>();
-        enemyAttributes = FindAnyObjectByType<EnemyAttributes>();  
-    }
-    void Start()
-    {
-        UpdateAttributes();
+        enemyAttributes = FindAnyObjectByType<EnemyAttributes>();
     }
 
-    void UpdateAttributes()
+    private void Start()
+    {
+        UpdateAttributes();
+        if (!isPlayer)
+        {
+            healthBar.text = health.ToString();
+        }
+    }
+
+    private void UpdateAttributes()
     {
         if (!isPlayer && enemyAttributes != null)
         {
             health = Mathf.RoundToInt(health * enemyAttributes.GetHealthMultiplier());
         }
-        
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag != "PowerUps")
+        if (other.tag == "PowerUps" && isPlayer)
         {
-            DamageDealer damageDealer = other.GetComponent<DamageDealer>();
-            if(damageDealer != null)
-            {
-                Takedamage(damageDealer.GetDamage());
-                damageDealer.Hit();
-            }
+            HandlePowerUp(other);
         }
-        else if (other.tag == "PowerUps" && isPlayer)
+        else if (other.tag != "PowerUps")
         {
-            PowerUps powerUps = other.GetComponent<PowerUps>();
-            if (powerUps != null)
-            {
-                powerUps.GetPowerUp(this.gameObject);
-                powerUps.PowerUpGathered();
-            }
+            HandleDamage(other);
         }
-        
+    }
+
+    private void HandlePowerUp(Collider2D other)
+    {
+        PowerUps powerUps = other.GetComponent<PowerUps>();
+        if (powerUps != null)
+        {
+            powerUps.GetPowerUp(gameObject);
+            powerUps.PowerUpGathered();
+        }
+    }
+
+    private void HandleDamage(Collider2D other)
+    {
+        DamageDealer damageDealer = other.GetComponent<DamageDealer>();
+        if (damageDealer != null)
+        {
+            TakeDamage(damageDealer.GetDamage());
+            damageDealer.Hit();
+        }
     }
 
     public float GetHealth()
     {
-        if (isPlayer)
-        {
-            return health;
-        }
-        else
-        {
-            return enemyHealthfixed;
-        }
-        
+        return isPlayer ? health : enemyHealthFixed;
     }
+
     public int GetShield()
     {
         return shield;
     }
+
     public void AddHealth(float addHealth)
     {
-        health += addHealth;
-    }
-     public void AddEnemyHealth(float addHealth)
-    {
-        health = addHealth;
+        health = Mathf.Clamp(health + addHealth, 0, 100);
     }
 
     public void AddShield(int addShield)
     {
-        shield += addShield;
+        shield = Mathf.Clamp(shield + addShield, 0, 50);
     }
 
+    public void AddEnemyHealth(float addHealth)
+    {
+        health = addHealth;
+    }
 
-
-    void Takedamage(int damage)
-    {  
-        if(shield < 1)
+    private void TakeDamage(int damage)
+    {
+        if (shield > 0)
+        {
+            shield -= damage;
+            audioPlayer.PlayShieldClip();
+        }
+        else
         {
             shield = 0;
             health -= damage;
             PlayHitEffect();
-            ShakeCamra();
-            if (health <1)
+            ShakeCamera();
+
+            if (health <= 0)
             {
-                if(!isPlayer && scoreKeeper != null)
-                {
-                    scoreKeeper.AddScore(scoreToAdd);
-                }
-                else
-                {
-                    levelManager.LoadGameOver();
-                }
-                Destroy(gameObject);
+                HandleDeath();
             }
-            
-        }
-        else
-        {
-        shield -= damage;
-        ShakeCamra();
-        audioPlayer.PlayShieldClip();
+            else if (!isPlayer)
+            {
+                healthBar.text = health.ToString();
+            }
         }
     }
 
-    void PlayHitEffect()
+    private void HandleDeath()
     {
-        ParticleSystem effect;
-        
-        if (health > 1) 
+        if (!isPlayer)
         {
-            effect = hitEffect;
+            scoreKeeper?.AddScore(scoreToAdd);
+        }
+        else
+        {
+            levelManager.LoadGameOver();
+        }
+        Destroy(gameObject);
+    }
+
+    private void PlayHitEffect()
+    {
+        ParticleSystem effect = health > 1 ? hitEffect : destroyEffect;
+        if (health > 1)
+        {
             audioPlayer.PlayHitClip();
         }
-        else            
+        else
         {
-            effect = destroyEffect;
             audioPlayer.PlayDestroyClip();
         }
-        
+
         ParticleSystem instance = Instantiate(effect, transform.position, Quaternion.identity);
         Destroy(instance.gameObject, instance.main.duration + instance.main.startLifetime.constantMax);
     }
 
-    void ShakeCamra()
+    private void ShakeCamera()
     {
-        if(isPlayer && cameraShake != null)
+        if (isPlayer && cameraShake != null)
         {
             cameraShake.Play();
         }
     }
-
-    
 }

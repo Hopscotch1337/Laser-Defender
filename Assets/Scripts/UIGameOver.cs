@@ -6,44 +6,50 @@ using UnityEngine;
 
 public class UIGameOver : MonoBehaviour
 {
-    int score;
-    ScoreKeeper scoreKeeper;
-    [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] HighscoreManager highscoreManager;
-    [SerializeField] TextMeshProUGUI newHighscore;
-    [SerializeField] TMP_InputField inputName;
-    [SerializeField] GameObject saveButton;
-    
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private HighscoreManager highscoreManager;
+    [SerializeField] private TextMeshProUGUI newHighscoreText;
+    [SerializeField] private TMP_InputField inputNameField;
+    [SerializeField] private GameObject saveButton;
 
+    private int currentScore;
 
-    void Awake() 
+    private void Awake()
     {
-        scoreKeeper = FindObjectOfType<ScoreKeeper>();
-        newHighscore.gameObject.SetActive(false);
-        inputName.gameObject.SetActive(false);
-        saveButton.gameObject.SetActive(false);
+        HideHighscoreInput();
     }
-    void Start()
+
+    private void Start()
     {
-        scoreText.text = scoreKeeper.GetScore().ToString("00000000");
-        bool isNewHighscore = highscoreManager.IsNewHighscore((int)scoreKeeper.GetScore());
-        newHighscore.gameObject.SetActive(isNewHighscore);
-        inputName.gameObject.SetActive(isNewHighscore);
-        saveButton.gameObject.SetActive(isNewHighscore);
+        // Retrieve and display current score
+        currentScore = (int)ScoreKeeper.instance.GetScore();
+        scoreText.text = currentScore.ToString("00000000");
+
+        // Check if the current score is a new high score
+        bool isNewHighscore = highscoreManager.IsNewHighscore(currentScore);
+        newHighscoreText.gameObject.SetActive(isNewHighscore);
+        inputNameField.gameObject.SetActive(isNewHighscore);
+        saveButton.SetActive(isNewHighscore);
     }
 
     public void AddToHighscore()
     {
-        string playerName = inputName.text;
+        string playerName = inputNameField.text;
         if (!string.IsNullOrWhiteSpace(playerName))
         {
-            highscoreManager.Add(playerName, (int)scoreKeeper.GetScore());
-            newHighscore.gameObject.SetActive(false);
-            inputName.gameObject.SetActive(false);
-            saveButton.gameObject.SetActive(false);
+            // Add the new high score
+            highscoreManager.Add(playerName, currentScore);
+            // Hide input fields and button
+            HideHighscoreInput();
+            // Save the updated high scores
             highscoreManager.Save();
-
         }
     }
 
+    private void HideHighscoreInput()
+    {
+        newHighscoreText.gameObject.SetActive(false);
+        inputNameField.gameObject.SetActive(false);
+        saveButton.SetActive(false);
+    }
 }

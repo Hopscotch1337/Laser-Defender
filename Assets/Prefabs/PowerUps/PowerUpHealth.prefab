@@ -76,6 +76,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3951930779453193199, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.483
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951930779453193199, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.272
+      objectReference: {fileID: 0}
     - target: {fileID: 4005385237686395453, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
       propertyPath: hpModifier
       value: 20
@@ -87,6 +95,18 @@ PrefabInstance:
     - target: {fileID: 5414693761699221000, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180123771979161223, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
+      propertyPath: m_text
+      value: +25 HP
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180123771979161223, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180123771979161223, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9222377992779583465, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
       propertyPath: m_LocalScale.x

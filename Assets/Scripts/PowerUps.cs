@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class PowerUps : MonoBehaviour
 {
-    [SerializeField] string typeOfPowerup;
-    [SerializeField] int shieldModifier;
-    [SerializeField] float attackSpeedModifier;
-    [SerializeField] int hpModifier;
-    [SerializeField] float moveSpeedModifier;
-    [SerializeField] int damageModifier;
-   
-   public void GetPowerUp(GameObject player)
-   {
+    [SerializeField] private string typeOfPowerup;
+    [SerializeField] private int shieldModifier;
+    [SerializeField] private float attackSpeedModifier;
+    [SerializeField] private int hpModifier;
+    [SerializeField] private float moveSpeedModifier;
+    [SerializeField] private int damageModifier;
+
+    public void GetPowerUp(GameObject player)
+    {
         Health health = player.GetComponent<Health>();
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         Shooter shooter = player.GetComponent<Shooter>();
@@ -21,33 +21,25 @@ public class PowerUps : MonoBehaviour
         switch (typeOfPowerup)
         {
             case "Shield":
-            health.AddShield(shieldModifier);
-            break;
-
+                health.AddShield(shieldModifier);
+                break;
             case "Attackspeed":
-            shooter.AddAttackSpeed(attackSpeedModifier);
-            
-            break;
-
+                shooter.AddAttackSpeed(attackSpeedModifier);
+                break;
             case "Health":
-            health.AddHealth(hpModifier);
-            
-            break;
-
+                health.AddHealth(hpModifier);
+                break;
             case "Movespeed":
-            playerMovement.AddPlayerMovement(moveSpeedModifier);
-            
-            break;
-
+                playerMovement.AddPlayerMovement(moveSpeedModifier);
+                break;
             case "Damage":
-            //ProjektileManager.instance.ApplyDamageModifier(damageModifier);
-            
-            break;
+                //ProjectileManager.instance.ApplyDamageModifier(damageModifier);
+                break;
         }
-   }
+    }
 
-   public void PowerUpGathered()
-   {
-    Destroy(gameObject);
-   }
+    public void PowerUpGathered()
+    {
+        Destroy(gameObject);
+    }
 }

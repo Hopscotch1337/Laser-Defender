@@ -72,13 +72,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUpsAttackSpeed
       objectReference: {fileID: 0}
+    - target: {fileID: 3951930779453193199, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.498
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951930779453193199, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.272
+      objectReference: {fileID: 0}
     - target: {fileID: 4005385237686395453, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
       propertyPath: typeOfPowerup
       value: Attackspeed
       objectReference: {fileID: 0}
     - target: {fileID: 4005385237686395453, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
       propertyPath: attackSpeedModifier
-      value: 0.015
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180123771979161223, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180123771979161223, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9222377992779583465, guid: 6fff35fbebd27b542a13620613c845ae, type: 3}
       propertyPath: m_LocalScale.x

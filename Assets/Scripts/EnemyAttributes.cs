@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EnemyAttributes : MonoBehaviour
 {
-    [SerializeField] float healthMultiplier = 1f;
-    //public float shieldMultiplier = 1f;
+    [SerializeField] private float healthMultiplier = 1f;
+
     public static EnemyAttributes instance;
 
     private void Awake()
@@ -22,18 +22,21 @@ public class EnemyAttributes : MonoBehaviour
         }
     }
 
+    // Erhöht den Gesundheitsmultiplikator um den angegebenen Betrag
     public void IncreaseHealthMultiplier(float amount)
     {
         healthMultiplier *= amount;
     }
+
+    // Gibt den aktuellen Gesundheitsmultiplikator zurück
     public float GetHealthMultiplier()
     {
         return healthMultiplier;
     }
+
+    // Setzt den Gesundheitsmultiplikator auf den Standardwert zurück
     public void ResetHealthMultiplier()
     {
         healthMultiplier = 1f;
     }
-
-
 }

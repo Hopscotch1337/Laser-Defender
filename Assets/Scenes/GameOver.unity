@@ -902,7 +902,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 220.15
+  m_fontSize: 220.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1534,7 +1534,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 88.6
+  m_fontSize: 88.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2027,8 +2027,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 92873956}
   highscoreManager: {fileID: 6730380623383453984}
-  newHighscore: {fileID: 1887740332}
-  inputName: {fileID: 274292448}
+  newHighscoreText: {fileID: 1887740332}
+  inputNameField: {fileID: 274292448}
   saveButton: {fileID: 901021011}
 --- !u!1 &1994344954
 GameObject:
@@ -4676,10 +4676,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneLoadDelay: 2
-  mainMenuCanvas: {fileID: 2905054818394044527, guid: f8c20b828aab48e49872802937290103, type: 3}
-  highScoreCanvas: {fileID: 9049456879238890533, guid: 47027ae1c24622f48ac17d3658dcf9f0, type: 3}
-  highscoreManager: {fileID: 6730380623383453984}
-  highscoreEntries: {fileID: 9049456879238890533, guid: 47027ae1c24622f48ac17d3658dcf9f0, type: 3}
   highscoreEntryUiPrefab: {fileID: 884059487865777067, guid: 9d67bbd0b3b7b7844a23c849b1c8e899, type: 3}
 --- !u!1 &4506659265820802100
 GameObject:
@@ -4847,8 +4843,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b1f3886edcbb8454e8b1767ef3001eda, type: 2}
   - {fileID: 11400000, guid: f09a56ff42fe2324a91ad4aa6decadaf, type: 2}
   timeBetweenWaves: 4
+  timeBetweenEnemyMultiplier: 1
+  levelDisplay: {fileID: 0}
+  waveDisplay: {fileID: 0}
   isLooping: 1
-  inUI: 1
+  isUI: 1
 --- !u!224 &5255544616850687939
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5252,8 +5251,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 1
-  timeBetweenWaves: 0
+  timeBetweenWaves: 1
   enemyFireRate: 1
+  timeBetweenEnemy: 1
   enemyPrefabs:
   - {fileID: 2254642078207862203, guid: f29356499d84e3b42a00103f15d44a6f, type: 3}
   - {fileID: 1184972735522923349, guid: 51443d6cdc4f5054eb7572df703808c7, type: 3}
@@ -5261,7 +5261,9 @@ MonoBehaviour:
   - {fileID: 2420364197225149988, guid: 55c8bc506f344124e960a874cdfd7b24, type: 3}
   healthDropdown: {fileID: 1162173064178871720}
   fireRateDropdown: {fileID: 2990043807196970653}
+  waveRateDropdown: {fileID: 0}
   spawnRateDropdown: {fileID: 422244406862474826}
+  scoreMultiplierText: {fileID: 0}
 --- !u!222 &6142841839536152811
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -3,34 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour
+
 {
     [Header("Shooting")]
     [SerializeField] AudioClip shootingClip;
-    [SerializeField] [Range(0f, 1f)] float shootingVolume = 1f;
+    [SerializeField, Range(0f, 1f)] float shootingVolume = 1f;
 
     [Header("Hit")]
     [SerializeField] AudioClip hitClip;
     [SerializeField] AudioClip shieldClip;
-    [SerializeField] [Range(0f, 1f)] float hitVolume = 1f;
-    
+    [SerializeField, Range(0f, 1f)] float hitVolume = 1f;
+
     [Header("Destruction")]
     [SerializeField] AudioClip destroyClip;
-    [SerializeField] [Range(0f, 1f)] float destroyVolume = 1f;
+    [SerializeField, Range(0f, 1f)] float destroyVolume = 1f;
 
-    [Header("Musik")]
-    [SerializeField] AudioClip [] audioClips;
-    AudioSource audioSource;
+    [Header("Music")]
+    [SerializeField] AudioClip[] audioClips;
+    private AudioSource audioSource;
 
-    void Awake() //test test 
+    void Awake()
     {
-        if (audioClips != null)
+        if (audioClips.Length > 0)
         {
             audioSource = GetComponent<AudioSource>();
-            int randomIndex = Random.Range(0, audioClips.Length);
-            audioSource.clip = audioClips[randomIndex]; 
-            audioSource.Play();
+            if (audioSource != null)
+            {
+                int randomIndex = Random.Range(0, audioClips.Length);
+                audioSource.clip = audioClips[randomIndex];
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.LogWarning("AudioSource component missing on this GameObject.");
+            }
         }
-        
+        else
+        {
+            Debug.LogWarning("No audio clips assigned to play on Awake.");
+        }
     }
 
     public void PlayShootingClip()
@@ -42,9 +53,10 @@ public class AudioPlayer : MonoBehaviour
     {
         PlayClip(hitClip, hitVolume);
     }
-       public void PlayShieldClip()
+
+    public void PlayShieldClip()
     {
-        PlayClip(shieldClip, 0.4f);
+        PlayClip(shieldClip, 0.4f); // Hardcoded volume
     }
 
     public void PlayDestroyClip()
@@ -52,13 +64,15 @@ public class AudioPlayer : MonoBehaviour
         PlayClip(destroyClip, destroyVolume);
     }
 
-    void PlayClip(AudioClip clip, float volume)
+    private void PlayClip(AudioClip clip, float volume)
     {
-        if(clip != null)
+        if (clip != null)
         {
-            AudioSource.PlayClipAtPoint(clip,Camera.main.transform.position, volume);
+            AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, volume);
         }
-        
+        else
+        {
+            Debug.LogWarning("Attempted to play a null AudioClip.");
+        }
     }
 }
-
