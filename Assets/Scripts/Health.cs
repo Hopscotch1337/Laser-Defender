@@ -113,10 +113,10 @@ public class Health : MonoBehaviour
         {
             shield -= damage;
             audioPlayer.PlayShieldClip();
+            shield = shield < 0 ? 0 : shield;
         }
         else
         {
-            shield = 0;
             health -= damage;
             PlayHitEffect();
             ShakeCamera();

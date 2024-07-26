@@ -66,6 +66,7 @@ public class LevelManager : MonoBehaviour
         Options.instance.UpdateEnemyStats();
         ScoreKeeper.instance.ResetScore();
         SceneManager.LoadScene(1);
+        optionCanvas.transform.GetChild(2).gameObject.SetActive(false);
     }
 
     public void LoadGameOver()
@@ -77,6 +78,7 @@ public class LevelManager : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
+        optionCanvas.transform.GetChild(2).gameObject.SetActive(true);
     }
     
     public void QuitGame()
@@ -97,6 +99,7 @@ public class LevelManager : MonoBehaviour
         mainMenuCanvas = FindDeactivatedGameObjectByName("MenuCanvas"); 
         optionCanvas.transform.GetChild(0).gameObject.SetActive(true);
         optionCanvas.transform.GetChild(1).gameObject.SetActive(true);
+        optionCanvas.transform.GetChild(2).gameObject.SetActive(false);
         highScoreCanvas.SetActive(false);
         mainMenuCanvas.SetActive(false);
         
@@ -110,6 +113,7 @@ public class LevelManager : MonoBehaviour
         mainMenuCanvas = FindDeactivatedGameObjectByName("MenuCanvas"); 
         optionCanvas.transform.GetChild(0).gameObject.SetActive(false);
         optionCanvas.transform.GetChild(1).gameObject.SetActive(false);
+        optionCanvas.transform.GetChild(2).gameObject.SetActive(false);
         highScoreCanvas.SetActive(true);
         mainMenuCanvas.SetActive(false);
         ShowHighscores();
@@ -121,6 +125,7 @@ public class LevelManager : MonoBehaviour
         Options.instance.UpdateEnemyStats();
         optionCanvas.transform.GetChild(0).gameObject.SetActive(false);
         optionCanvas.transform.GetChild(1).gameObject.SetActive(false);
+        optionCanvas.transform.GetChild(2).gameObject.SetActive(true);
         highScoreCanvas.SetActive(false);
         mainMenuCanvas.SetActive(true);
     }

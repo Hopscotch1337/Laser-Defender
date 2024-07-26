@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUps : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PowerUps : MonoBehaviour
     [SerializeField] private int hpModifier;
     [SerializeField] private float moveSpeedModifier;
     [SerializeField] private int damageModifier;
+    [SerializeField] private Button bossIndestructionable;
+    [SerializeField] private Button bossSpawnAlly;
 
     public void GetPowerUp(GameObject player)
     {
@@ -33,7 +36,11 @@ public class PowerUps : MonoBehaviour
                 playerMovement.AddPlayerMovement(moveSpeedModifier);
                 break;
             case "Damage":
-                //ProjectileManager.instance.ApplyDamageModifier(damageModifier);
+                //ProjectileManager.instance.ApplyDamageModifier(damageModifier); Does not work yet
+                break;
+
+            //Boss PowerUPs
+            case "":
                 break;
         }
     }
