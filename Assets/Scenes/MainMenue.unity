@@ -1755,14 +1755,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4817427500691463669, guid: 673af097ed4b33a4db9ad3d36b4a16c4, type: 3}
-      propertyPath: scrollSpeed.y
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 5185623435920585951, guid: 673af097ed4b33a4db9ad3d36b4a16c4, type: 3}
-      propertyPath: scrollSpeed.y
-      value: 0.04
-      objectReference: {fileID: 0}
     - target: {fileID: 8201614497351103231, guid: 673af097ed4b33a4db9ad3d36b4a16c4, type: 3}
       propertyPath: m_Name
       value: Background
@@ -1915,18 +1907,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1328801470965554929, guid: 4aa054cde76ab9943b557083b8ad2449, type: 3}
-      propertyPath: m_Volume
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328801470965554929, guid: 4aa054cde76ab9943b557083b8ad2449, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328801470965554929, guid: 4aa054cde76ab9943b557083b8ad2449, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 920287347adf9b74b9de67aebd27bfec, type: 3}
     - target: {fileID: 5000620459434927930, guid: 4aa054cde76ab9943b557083b8ad2449, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1975,18 +1955,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 7593724945200108942, guid: 4aa054cde76ab9943b557083b8ad2449, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8235311278585207728, guid: 4aa054cde76ab9943b557083b8ad2449, type: 3}
-      propertyPath: audioClips.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8235311278585207728, guid: 4aa054cde76ab9943b557083b8ad2449, type: 3}
-      propertyPath: audioClips.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 920287347adf9b74b9de67aebd27bfec, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

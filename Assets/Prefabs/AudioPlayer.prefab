@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8235311278585207728
 MonoBehaviour:
@@ -48,9 +48,12 @@ MonoBehaviour:
   shootingClip: {fileID: 8300000, guid: 2d28816144c059949b516474bdddfeab, type: 3}
   shootingVolume: 0.2
   hitClip: {fileID: 8300000, guid: 400e79c430cfc4944bdd0adfb255eb5b, type: 3}
+  shieldClip: {fileID: 8300000, guid: 8ed1963cd77bb9845a4682d60034d77b, type: 3}
   hitVolume: 0.8
   destroyClip: {fileID: 8300000, guid: 30b77d97f2474994db6730e1f6795901, type: 3}
   destroyVolume: 0.9
+  audioClips:
+  - {fileID: 8300000, guid: 920287347adf9b74b9de67aebd27bfec, type: 3}
 --- !u!82 &1328801470965554929
 AudioSource:
   m_ObjectHideFlags: 0
@@ -58,12 +61,12 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7593724945200108942}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 39edb325841198642ba9564ffd70da33, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 920287347adf9b74b9de67aebd27bfec, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.6
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
